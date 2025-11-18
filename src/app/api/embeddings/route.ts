@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import {generateEmbedding} from "../../../../utils/genai/embed"
 
-// POST request handler for generating embeddings
+// POST request handler for generating embeddingsff
 export async function POST(request: NextRequest) {
 
   try {
