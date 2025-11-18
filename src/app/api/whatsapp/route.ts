@@ -3,7 +3,10 @@ import {generateEmbedding} from "../../../../utils/genai/embed"
 
 export async function POST(request: NextRequest) {
   try {
-    const { text } = await request.json();
+
+    const body = (await request.json()) as { text?: string };
+    const { text } = body;
+    
     if (!text || typeof text !== 'string') {
       return NextResponse.json({ error: 'Missing or invalid "text" in request body.' }, { status: 400 });
     }
@@ -13,6 +16,7 @@ export async function POST(request: NextRequest) {
     }
     return NextResponse.json({ embedding });
   } catch (error) {
+    console.error('Embedding generation failed:', error);
     return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
   }
 }

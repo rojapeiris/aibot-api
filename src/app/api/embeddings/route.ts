@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
     }
     return NextResponse.json({ embedding });
   } catch (error) {
+    console.error('Embedding generation failed:', error);
     return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
   }
 }
